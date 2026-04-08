@@ -370,10 +370,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *
         [message appendFormat:@"\n\nReminder: %@",
             [fmt stringFromDate:self.reminderDatePicker.date]];
     }
-    
-    if (self.attachedFileName) {
-        [message appendFormat:@"\n\n📎 File: %@", self.attachedFileName];
-    }
+
     
     UIAlertController *success = [UIAlertController
         alertControllerWithTitle:@"Task Created! ✓"

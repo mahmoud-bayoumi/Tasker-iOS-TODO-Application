@@ -309,6 +309,13 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="File Display" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdA-hS-B9p">
+                                                <rect key="frame" x="8" y="517" width="361" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
@@ -324,6 +331,7 @@
                         <outlet property="createdAtLabel" destination="zhs-rY-Uiq" id="gHH-sB-yTY"/>
                         <outlet property="descriptionLabel" destination="i7E-YL-X1Y" id="LzI-9X-Oev"/>
                         <outlet property="descriptionTextField" destination="7GE-ob-emg" id="7k1-wM-Ps5"/>
+                        <outlet property="fileDisplayLabel" destination="WdA-hS-B9p" id="6Nf-9T-LeQ"/>
                         <outlet property="nameLabel" destination="fTE-WQ-LXr" id="pYf-X8-xo7"/>
                         <outlet property="nameTextField" destination="wjN-qV-zJR" id="Oaq-Ej-pDP"/>
                         <outlet property="priorityLabel" destination="C3G-Xy-pKF" id="Z17-eV-I3d"/>
