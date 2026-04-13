@@ -27,8 +27,8 @@
     
     NSMutableString *info = [NSMutableString stringWithFormat:@"%@", dateStr]; //     NSMutableString *info = [NSMutableString stringWithFormat:@"📅 %@", dateStr];
 
-    if (task.attachedFilePath) [info appendString:@"  📎"];
-    if (task.reminderDate)     [info appendString:@"  🔔"];
+    if (task.attachedFilePath) [info appendString:@"  "];
+    if (task.reminderDate)     [info appendString:@"  "];
     self.dateLabel.text = info;
     
     switch (task.priority) {

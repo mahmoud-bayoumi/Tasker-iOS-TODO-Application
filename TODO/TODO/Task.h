@@ -31,4 +31,7 @@ typedef NS_ENUM(NSInteger, TaskStatus) {
 @property (nonatomic, strong) NSString *attachedFilePath;
 @property (nonatomic, strong) NSString *attachedFileName;
 
+// Reconstructs the full path from filename (survives app restarts)
+- (NSString *)resolvedFilePath;
+
 @end

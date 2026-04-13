@@ -11,9 +11,9 @@
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 @interface AddTaskViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *prioritySegment;
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *reminderDatePicker;
@@ -36,6 +36,12 @@
     [super viewDidLoad];
     
     self.title = @"Add New Task";
+    self.descriptionTextView.layer.borderColor = [UIColor systemGray4Color].CGColor;
+    self.descriptionTextView.layer.borderWidth = 0.5;
+    self.descriptionTextView.layer.cornerRadius = 6;
+    self.descriptionTextView.font = [UIFont systemFontOfSize:14];
+    self.descriptionTextView.textContainerInset = UIEdgeInsetsMake(8, 4, 8, 4);
+    self.descriptionTextView.scrollEnabled = YES;
     
     self.selectedPriority = TaskPriorityLow;
     self.prioritySegment.selectedSegmentIndex = 0;
@@ -334,7 +340,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *
     
     Task *task = [[Task alloc] init];
     task.name = name;
-    task.taskDescription = self.descriptionTextField.text ?: @"";
+    task.taskDescription = self.descriptionTextView.text ?: @"";
     task.priority = self.selectedPriority;
     task.status = TaskStatusToDo;
     
@@ -390,7 +396,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *
 - (void)cancelTapped {
     
     BOOL hasTitle    = (self.titleTextField.text.length > 0);
-    BOOL hasDesc     = (self.descriptionTextField.text.length > 0);
+    BOOL hasDesc     = (self.descriptionTextView.text.length > 0);
     BOOL hasReminder = self.reminderSet;
     BOOL hasFile     = (self.attachedFilePath != nil);
     

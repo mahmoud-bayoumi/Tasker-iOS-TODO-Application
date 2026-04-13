@@ -12,6 +12,7 @@
 #import "TaskDetailViewController.h"
 
 @interface MainViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *emptyStateImageView;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -35,13 +36,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //self.title = @"Tasker";
-    
+        
     self.searchBar.delegate = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.segmentedControl.apportionsSegmentWidthsByContent = YES;
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TaskTableViewCell"
                                                bundle:nil]
@@ -116,6 +116,7 @@
     
     if (isEmpty) {
         self.tableView.tableFooterView = self.savedEmptyStateView;
+        self.emptyStateImageView.image = [UIImage imageNamed:@"task_image"];
     } else {
         self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }

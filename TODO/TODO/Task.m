@@ -29,7 +29,7 @@
     [coder encodeInteger:_status forKey:@"status"];
     [coder encodeObject:_createdDate forKey:@"createdDate"];
     [coder encodeObject:_reminderDate forKey:@"reminderDate"];
-    [coder encodeObject:_attachedFilePath forKey:@"attachedFilePath"];
+    // ONLY save filename — full path changes between launches
     [coder encodeObject:_attachedFileName forKey:@"attachedFileName"];
 }
 
@@ -43,10 +43,37 @@
         _status = [coder decodeIntegerForKey:@"status"];
         _createdDate = [coder decodeObjectForKey:@"createdDate"];
         _reminderDate = [coder decodeObjectForKey:@"reminderDate"];
-        _attachedFilePath = [coder decodeObjectForKey:@"attachedFilePath"];
         _attachedFileName = [coder decodeObjectForKey:@"attachedFileName"];
+        
+        // Reconstruct full path from filename
+        if (_attachedFileName) {
+            _attachedFilePath = [self filePathForName:_attachedFileName];
+        }
     }
     return self;
+}
+
+#pragma mark - File Path Helpers
+
+- (NSString *)filePathForName:(NSString *)fileName {
+    if (!fileName) return nil;
+    NSString *docsDir = NSSearchPathForDirectoriesInDomains(
+        NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    return [docsDir stringByAppendingPathComponent:fileName];
+}
+
+- (NSString *)resolvedFilePath {
+    if (!self.attachedFileName) return nil;
+    
+    // Always rebuild from filename — sandbox path may have changed
+    NSString *docsDir = NSSearchPathForDirectoriesInDomains(
+        NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *path = [docsDir stringByAppendingPathComponent:self.attachedFileName];
+    
+    // Keep stored path in sync
+    self.attachedFilePath = path;
+    
+    return path;
 }
 
 @end
